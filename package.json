@@ -1,0 +1,23 @@
+{
+  "name": "notes-app",
+  "version": "1.0.0",
+  "description": "simple notes app",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/JScislewski/node-notes-app.git"
+  },
+  "author": "Jakub Ściślewski",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/JScislewski/node-notes-app/issues"
+  },
+  "homepage": "https://github.com/JScislewski/node-notes-app#readme",
+  "dependencies": {
+    "chalk": "^4.1.0",
+    "yargs": "^15.4.1"
+  }
+}
