@@ -1,5 +1,6 @@
 const chalk = require("chalk");
 const yargs = require("yargs");
+const notes = require("./notes");
 const { argv } = require("yargs");
 
 yargs
@@ -18,33 +19,28 @@ yargs
         type: "string",
       },
     },
-    handler: function () {
-      console.log(
-        chalk.green("Adding new note\n--------------\n"),
-        chalk.blue(`Title: ${argv.title}`),
-        "\n",
-        chalk.italic.cyan(`Content: ${argv.content}`)
-      );
+    handler() {
+      notes.addNote(argv.title, argv.content);
     },
   })
   .command({
     command: "remove",
     describe: "Remove a note",
-    handler: function () {
+    handler() {
       console.log(chalk.red("Removing a note"));
     },
   })
   .command({
     command: "list",
     describe: "List all notes",
-    handler: function () {
+    handler() {
       console.log(chalk.blue("List all notes"));
     },
   })
   .command({
     command: "read",
     describe: "Read note",
-    handler: function () {
+    handler() {
       console.log(chalk.blue("Read a note"));
     },
   });
