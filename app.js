@@ -1,54 +1,58 @@
 const chalk = require("chalk");
 const yargs = require("yargs");
-const { addNote, removeNote } = require("./notes");
-const { argv } = require("yargs");
+const { addNote, removeNote } = require("./notes.js");
 
-yargs
-  .command({
-    command: "add",
-    describe: "Add new note",
-    builder: {
-      title: {
-        describe: "Note title",
-        demandOption: true,
-        type: "string",
-      },
-      content: {
-        describe: "Note content",
-        demandOption: true,
-        type: "string",
-      },
+yargs.version("1.1.0");
+
+yargs.command({
+  command: "add",
+  describe: "Add a new note",
+  builder: {
+    title: {
+      describe: "Note title",
+      demandOption: true,
+      type: "string",
     },
-    handler() {
-      addNote(argv);
+    content: {
+      describe: "Note content",
+      demandOption: true,
+      type: "string",
     },
-  })
-  .command({
-    command: "remove",
-    describe: "Remove a note",
-    builder: {
-      title: {
-        describe: "Note title",
-        demandOption: true,
-        type: "string",
-      },
+  },
+  handler(argv) {
+    addNote(argv.title, argv.content);
+  },
+});
+
+yargs.command({
+  command: "remove",
+  describe: "Remove a note",
+  builder: {
+    title: {
+      describe: "Note title",
+      demandOption: true,
+      type: "string",
     },
-    handler() {
-      removeNote(argv);
-    },
-  })
-  .command({
-    command: "list",
-    describe: "List all notes",
-    handler() {
-      console.log(chalk.blue("List all notes"));
-    },
-  })
-  .command({
-    command: "read",
-    describe: "Read note",
-    handler() {
-      console.log(chalk.blue("Read a note"));
-    },
-  });
+  },
+  handler(argv) {
+    removeNote(argv.title);
+  },
+});
+
+yargs.command({
+  command: "list",
+  describe: "List your notes",
+  handler() {
+    console.log(chalk.blue("List all notes"));
+  },
+});
+
+yargs.command({
+  command: "read",
+  describe: "Read a note",
+  handler() {
+    console.log(chalk.blue("Read a note"));
+  },
+});
+
 yargs.parse();
