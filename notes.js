@@ -18,7 +18,7 @@ const addNote = (title, content) => {
       chalk.italic.cyan(`Content: ${content}`)
     );
   } else {
-    console.log(chalk.red("This note already exists!"));
+    console.log(chalk.red("Note with this title already exists"));
   }
 };
 
