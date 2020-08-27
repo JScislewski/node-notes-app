@@ -37,6 +37,14 @@ const removeNote = (title) => {
   }
 };
 
+const listNotes = () => {
+  console.log(chalk.inverse("Your notes:"));
+  const notes = loadNotes();
+  notes.forEach((note) => {
+    console.log(chalk.blue(note.title));
+  });
+};
+
 const saveNotes = (notes) => {
   const notesJSON = JSON.stringify(notes);
   fs.writeFileSync("notes.json", notesJSON);
@@ -46,7 +54,6 @@ const loadNotes = () => {
   try {
     const dataBuffer = fs.readFileSync("notes.json");
     const dataJSON = dataBuffer.toString();
-    console.log(JSON.parse(dataJSON));
     return JSON.parse(dataJSON);
   } catch (error) {
     console.log(chalk.red("There are no notes"));
@@ -55,6 +62,7 @@ const loadNotes = () => {
 };
 
 module.exports = {
+  listNotes,
   addNote,
   removeNote,
 };
